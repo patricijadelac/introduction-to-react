@@ -1,11 +1,8 @@
-import React, { useContext } from 'react';
-
-import PokemonContext from '../PokemonContext';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 const PokemonInfo = () => {
-  const {
-    state: { selectedPokemon },
-  } = useContext(PokemonContext);
+  const selectedPokemon = useSelector((state) => state.selectedPokemon);
 
   return selectedPokemon ? (
     <div>
@@ -23,11 +20,5 @@ const PokemonInfo = () => {
     </div>
   ) : null;
 };
-
-// PropTypes are primarily used to validate props passed directly to a component.
-// Since `selectedPokemon` is now provided through context rather than as a direct prop, PropTypes in `PokemonInfo` are not effective for validation in this case.
-// Validation for context values like `selectedPokemon` should be handled at the context provider level if needed.
-
-// PokemonInfo.propTypes = PokemonType;
 
 export default PokemonInfo;

@@ -1,29 +1,39 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { CssBaseline } from '@mui/material';
+import { createStore } from 'redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 
 import PokemonFilter from './components/PokemonFilter';
 import PokemonInfo from './components/PokemonInfo';
 import PokemonTable from './components/PokemonTable';
 
-import PokemonContext from './PokemonContext';
-
-// --- useReducer hook ---
-// useReducer is a React hook for managing state in functional components
-// It is preferred for complex state logic involving multiple sub-values or when the next state depends on the previous one
-// It takes a reducer function and an initial state as arguments
-// The reducer function receives the current state and an action, returning the new state based on the action type
+// --- Redux ---
+// Redux is a predictable state management library for JavaScript applications, commonly used with React
+// It centralizes the application's state in a single store, allowing for easier management and debugging
 //
-// Benefits of useReducer:
-// - Better organization of state logic, especially for complex states
-// - Easier to test and debug compared to useState
-// - Allows for more predictable state transitions
+// Key Concepts:
+// 1. Store: The single source of truth for the application's state. It holds the entire state tree.
+// 2. Actions: Plain JavaScript objects that describe what happened in the application. Each action must have a 'type' property.
+// 3. Reducers: Pure functions that take the current state and an action as arguments, and return a new state. They specify how the state changes in response to actions.
+// 4. Dispatch: A function used to send actions to the store. It triggers the reducer to update the state based on the action.
+// 5. Selectors: Functions that extract specific pieces of state from the store, allowing components to access only the data they need.
 //
-// Usage:
-// const [state, dispatch] = useReducer(reducerFunction, initialState);
-// dispatch({ type: 'ACTION_TYPE', payload: data }) - to update the state
+// Using Redux in React:
+// - Wrap your application in a `<Provider>` component, passing the store as a prop. This makes the Redux store available to all components.
+// - Use the `useDispatch` hook to get the dispatch function, allowing you to send actions to the store.
+// - Use the `useSelector` hook to access the state from the store, enabling components to react to state changes.
+//
+// Redux promotes a unidirectional data flow, making it easier to understand how data changes over time and improving the maintainability of your application
 
-const pokemonReducer = (state, action) => {
+const pokemonReducer = (
+  state = {
+    pokemon: [],
+    filter: '',
+    selectedPokemon: null,
+  },
+  action
+) => {
   switch (action.type) {
     case 'SET_FILTER':
       return {
@@ -41,9 +51,11 @@ const pokemonReducer = (state, action) => {
         selectedPokemon: action.payload,
       };
     default:
-      return new Error('No action');
+      return state;
   }
 };
+
+const store = createStore(pokemonReducer);
 
 const PageContainer = styled.div`
   margin: auto;
@@ -62,42 +74,38 @@ const TwoColumnLayout = styled.div`
 `;
 
 function App() {
-  const [state, dispatch] = React.useReducer(pokemonReducer, {
-    pokemon: [],
-    filter: '',
-    selectedPokemon: null,
-  });
+  const dispatch = useDispatch();
+  const pokemon = useSelector((state) => state.pokemon);
 
   React.useEffect(() => {
     fetch('/introduction-to-react/pokemon.json')
       .then((resp) => resp.json())
-      .then((data) => dispatch({ type: 'SET_POKEMON', payload: data }));
-  }, []);
+      .then((payload) => dispatch({ type: 'SET_POKEMON', payload }));
+  }, [dispatch]);
 
-  if (!state.pokemon) {
+  if (!pokemon) {
     return <div>Loading data</div>;
   }
 
   return (
-    <PokemonContext.Provider
-      value={{
-        state,
-        dispatch,
-      }}
-    >
-      <PageContainer>
-        <CssBaseline />
-        <Title>Pokemon Search</Title>
-        <TwoColumnLayout>
-          <div>
-            <PokemonFilter />
-            <PokemonTable />
-          </div>
-          <PokemonInfo />
-        </TwoColumnLayout>
-      </PageContainer>
-    </PokemonContext.Provider>
+    <PageContainer>
+      <CssBaseline />
+      <Title>Pokemon Search</Title>
+      <TwoColumnLayout>
+        <div>
+          <PokemonFilter />
+          <PokemonTable />
+        </div>
+        <PokemonInfo />
+      </TwoColumnLayout>
+    </PageContainer>
   );
 }
 
-export default App;
+const Root = () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
+
+export default Root;
