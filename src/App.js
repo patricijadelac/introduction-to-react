@@ -6,14 +6,18 @@ import PokemonFilter from './components/PokemonFilter';
 import PokemonInfo from './components/PokemonInfo';
 import PokemonTable from './components/PokemonTable';
 
-// --- Zustand ---
-// A lightweight state management solution for React
+// --- MobX ---
+// MobX is a state management library that makes it simple to manage application state in React
+// It uses observable state, which allows components to automatically react to changes in the state
 //
-// Key Features:
-// - Lightweight: Minimalistic design with a small footprint
-// - React hooks: Utilizes React hooks for a natural integration in functional components
-// - No boilerplate: Simple setup without extensive configuration, making it easy to get started
-// - Flexible: Supports both local and global state management
+// Key concepts include:
+// - Observables: State that can be observed and will trigger updates in components when changed
+// - Actions: Functions that modify the state - they are used to encapsulate state changes
+// - Computed values: Derivations of state that are automatically updated when the underlying observables change
+// - Reactions: Side effects that run in response to state changes, such as rendering components or triggering API calls
+//
+// MobX promotes a more functional approach to state management, reducing boilerplate code compared to other libraries like Redux
+// To use MobX, you typically need to install the `mobx` and `mobx-react` packages and set up a store to manage your application's state
 
 const PageContainer = styled.div`
   margin: auto;
