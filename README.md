@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Course Notes: Introduction to React by Jack Herrington
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This document serves as a comprehensive guide to the key takeaways and insights from the Introduction to React course by Jack Herrington. It is designed to help you understand the core concepts and tools used in React development.
 
-In the project directory, you can run:
+## Course Link
 
-### `yarn start`
+[Watch the Course](https://www.youtube.com/watch?v=j8AVXNozac8&list=PLNqp92_EXZBKa1U7JbgUwBnDk3XzYDvXe)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Getting Started
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To get started with this project, ensure that you have all necessary dependencies installed. Use the following command in your terminal:
 
-### `yarn test`
+```
+yarn install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Running the Application
 
-### `yarn build`
+To run the application in development mode, execute:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+yarn start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This will open the app in your default browser at [http://localhost:3000](http://localhost:3000). The app will automatically reload if you make changes to the source code.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Deployment
 
-### `yarn eject`
+The application is deployed on GitHub Pages and can be accessed [here](https://patricijadelac.github.io/introduction-to-react/).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To deploy the app, use the following commands:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+yarn predeploy
+yarn deploy
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Key Learnings
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Throughout the course, various aspects of React were explored, leading to significant changes in the codebase. Below are the main topics covered:
 
-## Learn More
+1. **Introduction to React**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   - Deployment: Using GitHub Pages
+   - JSX
+   - Lists
+   - Creating Components
+   - State and Events
+   - Asynchronous Requests
+   - CSS in JS: Utilizing the [Emotion](https://emotion.sh/docs/introduction) library for styling components
+   - Component Libraries: As an example, we used the [Material UI](https://mui.com/) library
+   - Class Components
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. **React Hooks**
 
-### Code Splitting
+   - `useContext`
+   - `useReducer`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. **State Management Libraries**
 
-### Analyzing the Bundle Size
+   - [Redux](https://redux.js.org/)
+   - [Zustand](https://zustand-demo.pmnd.rs/)
+   - [MobX](https://mobx.js.org/README.html)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Recommendations
 
-### Making a Progressive Web App
+To fully grasp the concepts discussed, it is recommended to:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Clone the project repository.
+- Install the dependencies.
+- Start the project using `yarn start`.
+- Check out the commits related to each topic for detailed notes.
 
-### Advanced Configuration
+## Conclusion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The README serves as a structured overview of the course and application, guiding you through the learning process. Consider reviewing the key learnings and recommendations for a more effective understanding of the material.
